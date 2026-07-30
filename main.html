@@ -882,18 +882,16 @@
                     </div>
                     
                     <form class="contact-form" id="contactForm" action="https://formsubmit.co/mahesh.cin123@gmail.com" method="POST">
-                        <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_subject" value="🏗️ New Construction Inquiry - Trivikra Constructions">
+                        <!-- FormSubmit Configuration - Simple & Reliable -->
+                        <input type="hidden" name="_subject" value="New Construction Inquiry - Trivikra Constructions">
+                        <input type="hidden" name="_next" value="https://c770mahi.github.io/trivikra-constructions/?submitted=true">
+                        <input type="hidden" name="_template" value="box">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://c770mahi.github.io/trivikra-constructions/?success=true">
-                        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Trivikra Constructions! We have received your inquiry and will contact you within 24 hours. Visit our website: https://c770mahi.github.io/trivikra-constructions/">
                         
-                        <!-- Additional fields for better email content -->
-                        <input type="hidden" name="website_link" value="https://c770mahi.github.io/trivikra-constructions/">
-                        <input type="hidden" name="company_name" value="Trivikra Constructions">
-                        <input type="hidden" name="inquiry_date" id="inquiry_date">
-                        <input type="hidden" name="message_to_owner" value="📧 NEW LEAD ALERT! A potential customer has submitted an inquiry through your website. Please contact them within 24 hours for best conversion rates.">
+                        <!-- Website link for customer -->
+                        <input type="hidden" name="website" value="Visit our website: https://c770mahi.github.io/trivikra-constructions/">
+                        <input type="hidden" name="company" value="Trivikra Constructions">
+                        <input type="hidden" name="message" value="Please contact this customer within 24 hours for best conversion rates.">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1095,33 +1093,20 @@
             });
         });
 
-        // Set current date when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const now = new Date();
-            const dateString = now.toLocaleString('en-IN', {
-                timeZone: 'Asia/Kolkata',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            document.getElementById('inquiry_date').value = dateString;
-        });
-
-        // Form submission handling - Let FormSubmit handle the email sending
+        // Simple form submission handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            // Don't prevent default - let FormSubmit handle it
-            
             // Show loading state
             const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // FormSubmit will handle the actual submission
-            // The form will redirect to the _next URL after successful submission
+            // Let FormSubmit handle the rest - no API needed!
         });
+
+        // Show success message if redirected back with submitted parameter
+        if (window.location.search.includes('submitted=true')) {
+            alert('✅ Thank you! Your inquiry has been submitted successfully. We will contact you within 24 hours.');
+        }
 
         // Initialize EmailJS (you need to get these from emailjs.com)
         (function() {
