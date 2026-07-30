@@ -831,6 +831,102 @@
             box-shadow: 0 10px 20px rgba(59,130,246,0.3);
         }
 
+        /* Project Media Gallery */
+        .project-media {
+            position: relative;
+            margin-bottom: 1.5rem;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+
+        .media-gallery {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .media-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .media-item.active {
+            opacity: 1;
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .media-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .media-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .media-indicators {
+            display: flex;
+            gap: 8px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: rgba(255,255,255,0.8);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -1040,13 +1136,39 @@
                 <h2 class="section-title">Our Recent Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-home project-icon"></i>
+                        <div class="project-media">
+                            <div class="media-gallery">
+                                <div class="media-item active" data-type="image">
+                                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa Exterior" loading="lazy">
+                                </div>
+                                <div class="media-item" data-type="image">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa Interior" loading="lazy">
+                                </div>
+                                <div class="media-item" data-type="video">
+                                    <video controls poster="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                        <source src="#" type="video/mp4">
+                                        <p>Your browser doesn't support videos. <a href="#">Download video</a></p>
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="media-controls">
+                                <button class="media-btn prev-btn" onclick="changeMedia(this, -1)">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="media-indicators">
+                                    <span class="indicator active" onclick="showMedia(this, 0)"></span>
+                                    <span class="indicator" onclick="showMedia(this, 1)"></span>
+                                    <span class="indicator" onclick="showMedia(this, 2)"></span>
+                                </div>
+                                <button class="media-btn next-btn" onclick="changeMedia(this, 1)">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="project-info">
-                            <h3>Modern Villa - Bangalore</h3>
+                            <h3>Modern Villa</h3>
                             <p class="project-type">Material Contract</p>
-                            <p class="project-description">3BHK luxury villa with modern architecture, premium finishes, and smart home features. Completed in 8 months.</p>
+                            <p class="project-description">3BHK luxury villa with modern architecture, premium finishes, and smart home features.</p>
                             <div class="project-details">
                                 <span class="project-area"><i class="fas fa-ruler-combined"></i> 2,500 sq ft</span>
                                 <span class="project-duration"><i class="fas fa-calendar"></i> 8 months</span>
@@ -1055,11 +1177,30 @@
                     </div>
 
                     <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-building project-icon"></i>
+                        <div class="project-media">
+                            <div class="media-gallery">
+                                <div class="media-item active" data-type="image">
+                                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Complex" loading="lazy">
+                                </div>
+                                <div class="media-item" data-type="image">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Interior" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="media-controls">
+                                <button class="media-btn prev-btn" onclick="changeMedia(this, -1)">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="media-indicators">
+                                    <span class="indicator active" onclick="showMedia(this, 0)"></span>
+                                    <span class="indicator" onclick="showMedia(this, 1)"></span>
+                                </div>
+                                <button class="media-btn next-btn" onclick="changeMedia(this, 1)">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="project-info">
-                            <h3>Commercial Complex - Mysore</h3>
+                            <h3>Commercial Complex</h3>
                             <p class="project-type">Complete Construction</p>
                             <p class="project-description">5-floor commercial building with retail spaces, offices, and parking. Modern design with energy-efficient systems.</p>
                             <div class="project-details">
@@ -1327,6 +1468,41 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        }
+
+        // Project Media Gallery Functions
+        function changeMedia(button, direction) {
+            const mediaControls = button.closest('.media-controls');
+            const gallery = mediaControls.previousElementSibling;
+            const mediaItems = gallery.querySelectorAll('.media-item');
+            const indicators = mediaControls.querySelectorAll('.indicator');
+            
+            let currentIndex = Array.from(mediaItems).findIndex(item => item.classList.contains('active'));
+            let newIndex = currentIndex + direction;
+            
+            if (newIndex < 0) newIndex = mediaItems.length - 1;
+            if (newIndex >= mediaItems.length) newIndex = 0;
+            
+            showMediaAtIndex(mediaItems, indicators, newIndex);
+        }
+
+        function showMedia(indicator, index) {
+            const mediaControls = indicator.closest('.media-controls');
+            const gallery = mediaControls.previousElementSibling;
+            const mediaItems = gallery.querySelectorAll('.media-item');
+            const indicators = mediaControls.querySelectorAll('.indicator');
+            
+            showMediaAtIndex(mediaItems, indicators, index);
+        }
+
+        function showMediaAtIndex(mediaItems, indicators, index) {
+            // Remove active class from all items
+            mediaItems.forEach(item => item.classList.remove('active'));
+            indicators.forEach(ind => ind.classList.remove('active'));
+            
+            // Add active class to selected items
+            mediaItems[index].classList.add('active');
+            indicators[index].classList.add('active');
         }
 
         // Add fade-in animation on scroll
