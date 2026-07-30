@@ -146,12 +146,97 @@
             margin: 0 auto;
         }
 
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        /* Projects Layout */
+        .projects-layout {
+            display: flex;
             gap: 2rem;
             margin-bottom: 3rem;
+        }
+
+        /* Sidebar Filters */
+        .projects-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+
+        /* Custom scrollbar for mobile sidebar */
+        .projects-sidebar::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .projects-sidebar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+
+        .projects-sidebar::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+
+        .projects-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        .filter-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(59,130,246,0.2);
+        }
+
+        .filter-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .filter-option {
+            padding: 0.6rem 0;
+            cursor: pointer;
+            color: #555;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            margin: 0.2rem 0;
+        }
+
+        .filter-option:hover {
+            color: #3b82f6;
+            padding-left: 0.5rem;
+        }
+
+        .filter-option.active {
+            color: #3b82f6;
+            font-weight: 600;
+            background: rgba(59,130,246,0.1);
+            padding-left: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .filter-count {
+            background: #3b82f6;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
         }
 
         .project-card {
@@ -351,22 +436,112 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .projects-layout {
+                flex-direction: column;
+            }
+            
+            .projects-sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+                padding-bottom: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .filter-section {
+                flex-shrink: 0;
+                min-width: 200px;
+                margin-bottom: 0;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
             }
             
             .page-header h1 {
                 font-size: 2rem;
             }
             
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .projects-sidebar {
+                flex-direction: column;
+                overflow-x: visible;
+            }
+            
+            .filter-section {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .filter-section h3 {
+                font-size: 0.9rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .filter-option {
+                padding: 0.5rem 0;
+                font-size: 0.9rem;
+            }
+            
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .project-card {
+                padding: 1.5rem;
             }
             
             .project-details {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+            
+            .back-to-home {
+                margin: 2rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .page-header {
+                padding: 1.5rem 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .filter-section {
+                padding: 1rem;
+            }
+            
+            .project-card {
+                padding: 1rem;
+            }
+            
+            .back-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -482,202 +657,77 @@
                 <p>Explore our completed construction projects showcasing quality craftsmanship, innovative design, and client satisfaction across various construction services.</p>
             </section>
 
-            <!-- Projects Grid -->
-            <div class="projects-grid">
-                <!-- Project 1: Modern Villa -->
-                <div class="project-card fade-in">
-                    <div class="project-media">
-                        <div class="media-gallery">
-                            <div class="media-item active" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa Exterior" loading="lazy">
-                            </div>
-                            <div class="media-item" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa Interior" loading="lazy">
-                            </div>
-                            <div class="media-item" data-type="video">
-                                <video controls poster="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                    <source src="#" type="video/mp4">
-                                    <p>Your browser doesn't support videos. <a href="#">Download video</a></p>
-                                </video>
-                            </div>
+            <!-- Projects Layout with Sidebar -->
+            <div class="projects-layout">
+                <!-- Sidebar Filters -->
+                <aside class="projects-sidebar">
+                    <!-- Project Type Filter -->
+                    <div class="filter-section">
+                        <h3>Project Type</h3>
+                        <div class="filter-option active" data-filter="all">
+                            <span>All Projects</span>
+                            <span class="filter-count">0</span>
                         </div>
-                        <div class="media-controls">
-                            <button class="media-btn prev-btn" onclick="changeMedia(this, -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <div class="media-indicators">
-                                <span class="indicator active" onclick="showMedia(this, 0)"></span>
-                                <span class="indicator" onclick="showMedia(this, 1)"></span>
-                                <span class="indicator" onclick="showMedia(this, 2)"></span>
-                            </div>
-                            <button class="media-btn next-btn" onclick="changeMedia(this, 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                        <div class="filter-option" data-filter="material-contract">
+                            <span>Material Contract</span>
+                            <span class="filter-count">0</span>
+                        </div>
+                        <div class="filter-option" data-filter="complete-construction">
+                            <span>Complete Construction</span>
+                            <span class="filter-count">0</span>
+                        </div>
+                        <div class="filter-option" data-filter="interior-design">
+                            <span>Interior Design</span>
+                            <span class="filter-count">0</span>
+                        </div>
+                        <div class="filter-option" data-filter="labour-contract">
+                            <span>Labour Contract</span>
+                            <span class="filter-count">0</span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Modern Villa</h3>
-                        <p class="project-type">Material Contract</p>
-                        <p class="project-description">3BHK luxury villa with modern architecture, premium finishes, and smart home features. Complete end-to-end construction with high-quality materials and expert supervision.</p>
-                        <div class="project-details">
-                            <span class="project-area"><i class="fas fa-ruler-combined"></i> 2,500 sq ft</span>
-                            <span class="project-duration"><i class="fas fa-calendar"></i> 8 months</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Project 2: Commercial Complex -->
-                <div class="project-card fade-in">
-                    <div class="project-media">
-                        <div class="media-gallery">
-                            <div class="media-item active" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Complex" loading="lazy">
-                            </div>
-                            <div class="media-item" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Interior" loading="lazy">
-                            </div>
+                    <!-- Size Filter -->
+                    <div class="filter-section">
+                        <h3>Project Size</h3>
+                        <div class="filter-option" data-size="small">
+                            <span>Small (< 5,000 sq ft)</span>
+                            <span class="filter-count">0</span>
                         </div>
-                        <div class="media-controls">
-                            <button class="media-btn prev-btn" onclick="changeMedia(this, -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <div class="media-indicators">
-                                <span class="indicator active" onclick="showMedia(this, 0)"></span>
-                                <span class="indicator" onclick="showMedia(this, 1)"></span>
-                            </div>
-                            <button class="media-btn next-btn" onclick="changeMedia(this, 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                        <div class="filter-option" data-size="medium">
+                            <span>Medium (5K - 15K sq ft)</span>
+                            <span class="filter-count">0</span>
+                        </div>
+                        <div class="filter-option" data-size="large">
+                            <span>Large (> 15K sq ft)</span>
+                            <span class="filter-count">0</span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Commercial Complex</h3>
-                        <p class="project-type">Complete Construction</p>
-                        <p class="project-description">5-floor commercial building with retail spaces, offices, and parking. Modern design with energy-efficient systems and professional workspace solutions.</p>
-                        <div class="project-details">
-                            <span class="project-area"><i class="fas fa-ruler-combined"></i> 15,000 sq ft</span>
-                            <span class="project-duration"><i class="fas fa-calendar"></i> 14 months</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Project 3: Luxury Apartment -->
-                <div class="project-card fade-in">
-                    <div class="project-media">
-                        <div class="media-gallery">
-                            <div class="media-item active" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Apartment" loading="lazy">
-                            </div>
-                            <div class="media-item" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Apartment Interior" loading="lazy">
-                            </div>
+                    <!-- Status Filter -->
+                    <div class="filter-section">
+                        <h3>Status</h3>
+                        <div class="filter-option" data-status="completed">
+                            <span>Completed</span>
+                            <span class="filter-count">0</span>
                         </div>
-                        <div class="media-controls">
-                            <button class="media-btn prev-btn" onclick="changeMedia(this, -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <div class="media-indicators">
-                                <span class="indicator active" onclick="showMedia(this, 0)"></span>
-                                <span class="indicator" onclick="showMedia(this, 1)"></span>
-                            </div>
-                            <button class="media-btn next-btn" onclick="changeMedia(this, 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                        <div class="filter-option" data-status="ongoing">
+                            <span>Ongoing</span>
+                            <span class="filter-count">0</span>
+                        </div>
+                        <div class="filter-option" data-status="upcoming">
+                            <span>Upcoming</span>
+                            <span class="filter-count">0</span>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Luxury Apartment</h3>
-                        <p class="project-type">Interior Design</p>
-                        <p class="project-description">Complete interior makeover of 4BHK apartment with contemporary design, custom furniture, and premium materials for elegant living spaces.</p>
-                        <div class="project-details">
-                            <span class="project-area"><i class="fas fa-ruler-combined"></i> 1,800 sq ft</span>
-                            <span class="project-duration"><i class="fas fa-calendar"></i> 3 months</span>
-                        </div>
-                    </div>
-                </div>
+                </aside>
 
-                <!-- Project 4: Industrial Warehouse -->
-                <div class="project-card fade-in">
-                    <div class="project-media">
-                        <div class="media-gallery">
-                            <div class="media-item active" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Industrial Warehouse" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="media-controls">
-                            <div class="media-indicators">
-                                <span class="indicator active" onclick="showMedia(this, 0)"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Industrial Warehouse</h3>
-                        <p class="project-type">Labour Contract</p>
-                        <p class="project-description">Large-scale warehouse construction with advanced logistics design, high-bay storage, and loading facilities for efficient operations.</p>
-                        <div class="project-details">
-                            <span class="project-area"><i class="fas fa-ruler-combined"></i> 25,000 sq ft</span>
-                            <span class="project-duration"><i class="fas fa-calendar"></i> 10 months</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: Residential Township -->
-                <div class="project-card fade-in">
-                    <div class="project-media">
-                        <div class="media-gallery">
-                            <div class="media-item active" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Residential Township" loading="lazy">
-                            </div>
-                            <div class="media-item" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Township Amenities" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="media-controls">
-                            <button class="media-btn prev-btn" onclick="changeMedia(this, -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <div class="media-indicators">
-                                <span class="indicator active" onclick="showMedia(this, 0)"></span>
-                                <span class="indicator" onclick="showMedia(this, 1)"></span>
-                            </div>
-                            <button class="media-btn next-btn" onclick="changeMedia(this, 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Residential Township</h3>
-                        <p class="project-type">Material Contract</p>
-                        <p class="project-description">50-unit residential township with amenities, landscaping, and infrastructure. Eco-friendly construction practices with modern living facilities.</p>
-                        <div class="project-details">
-                            <span class="project-area"><i class="fas fa-ruler-combined"></i> 5 acres</span>
-                            <span class="project-duration"><i class="fas fa-calendar"></i> 18 months</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6: Healthcare Center -->
-                <div class="project-card fade-in">
-                    <div class="project-media">
-                        <div class="media-gallery">
-                            <div class="media-item active" data-type="image">
-                                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthcare Center" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="media-controls">
-                            <div class="media-indicators">
-                                <span class="indicator active" onclick="showMedia(this, 0)"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Healthcare Center</h3>
-                        <p class="project-type">Complete Construction</p>
-                        <p class="project-description">Multi-specialty healthcare facility with advanced medical infrastructure, patient-friendly design, and safety features for quality healthcare delivery.</p>
-                        <div class="project-details">
-                            <span class="project-area"><i class="fas fa-ruler-combined"></i> 8,000 sq ft</span>
-                            <span class="project-duration"><i class="fas fa-calendar"></i> 12 months</span>
-                        </div>
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Projects will be added here later -->
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem; color: #666;">
+                        <i class="fas fa-folder-open" style="font-size: 4rem; color: #3b82f6; margin-bottom: 1rem;"></i>
+                        <h3 style="font-size: 1.5rem; color: #2c3e50; margin-bottom: 0.5rem;">No Projects Yet</h3>
+                        <p>Projects will be added here soon. Stay tuned!</p>
                     </div>
                 </div>
             </div>
@@ -693,6 +743,73 @@
     </div>
 
     <script>
+        // Filter Functionality
+        document.querySelectorAll('.filter-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const filterType = this.getAttribute('data-filter') || 
+                                 this.getAttribute('data-size') || 
+                                 this.getAttribute('data-status');
+                const filterCategory = this.getAttribute('data-filter') ? 'type' :
+                                      this.getAttribute('data-size') ? 'size' : 'status';
+                
+                // Remove active class from siblings in same section
+                const section = this.closest('.filter-section');
+                section.querySelectorAll('.filter-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Filter projects
+                filterProjects();
+            });
+        });
+
+        function filterProjects() {
+            const activeType = document.querySelector('[data-filter].active')?.getAttribute('data-filter') || 'all';
+            const activeSize = document.querySelector('[data-size].active')?.getAttribute('data-size');
+            const activeStatus = document.querySelector('[data-status].active')?.getAttribute('data-status');
+            
+            document.querySelectorAll('.project-card').forEach(card => {
+                const cardType = card.getAttribute('data-type');
+                const cardSize = card.getAttribute('data-size');
+                const cardStatus = card.getAttribute('data-status');
+                
+                let showCard = true;
+                
+                // Check type filter
+                if (activeType !== 'all' && cardType !== activeType) {
+                    showCard = false;
+                }
+                
+                // Check size filter
+                if (activeSize && cardSize !== activeSize) {
+                    showCard = false;
+                }
+                
+                // Check status filter
+                if (activeStatus && cardStatus !== activeStatus) {
+                    showCard = false;
+                }
+                
+                // Show or hide card with animation
+                if (showCard) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
         // Project Media Gallery Functions
         function changeMedia(button, direction) {
             const mediaControls = button.closest('.media-controls');
