@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interior Design - Trivikra Constructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #8b5cf6;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #D4AF37, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .back-btn {
+            background: #8b5cf6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #7c3aed;
+            transform: translateY(-2px);
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .service-item {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+        .service-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .design-services {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .design-services h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .design-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #8b5cf6;
+            transition: all 0.3s ease;
+        }
+        .design-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139,92,246,0.3);
+        }
+        .design-item h4 {
+            color: #8b5cf6;
+            margin-bottom: 10px;
+        }
+        .portfolio {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .portfolio h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .portfolio-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .style-options {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .style-options h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .style-item {
+            background: linear-gradient(135deg, #f3e8ff, #e0e7ff);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #8b5cf6;
+        }
+        .contact-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .contact-btn {
+            background: #D4AF37;
+            color: #2c3e50;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .contact-btn:hover {
+            background: #B8860B;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.location.href='main.html'">← Back to Main</button>
+        
+        <div class="header">
+            <h1>🎨 Interior Design Services</h1>
+            <p>Premium interior design and decoration services to transform your space</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-item">
+                <h3>🏠 Residential Design</h3>
+                <p>Complete home interior design from living rooms to bedrooms and kitchens</p>
+            </div>
+            <div class="service-item">
+                <h3>🏢 Commercial Spaces</h3>
+                <p>Office, retail, and commercial interior design for professional environments</p>
+            </div>
+            <div class="service-item">
+                <h3>🎯 Custom Solutions</h3>
+                <p>Personalized design solutions tailored to your style and budget</p>
+            </div>
+        </div>
+
+        <div class="design-services">
+            <h2>Our Interior Design Services</h2>
+            <div class="design-grid">
+                <div class="design-item">
+                    <h4>🛋️ Living Room Design</h4>
+                    <p>Comfortable and stylish living spaces</p>
+                </div>
+                <div class="design-item">
+                    <h4>🛏️ Bedroom Design</h4>
+                    <p>Peaceful and functional bedroom layouts</p>
+                </div>
+                <div class="design-item">
+                    <h4>🍳 Kitchen Design</h4>
+                    <p>Modern and efficient kitchen spaces</p>
+                </div>
+                <div class="design-item">
+                    <h4>🚿 Bathroom Design</h4>
+                    <p>Luxurious and practical bathroom solutions</p>
+                </div>
+                <div class="design-item">
+                    <h4>🏢 Office Interiors</h4>
+                    <p>Professional workspace design</p>
+                </div>
+                <div class="design-item">
+                    <h4>🎨 Custom Furniture</h4>
+                    <p>Bespoke furniture design and creation</p>
+                </div>
+            </div>
+        </div>
+
+        <div name="style-options">
+            <h2>Design Styles We Specialize In</h2>
+            <div class="style-grid">
+                <div class="style-item">
+                    <h4>🏛️ Classic Traditional</h4>
+                    <p>Timeless elegance with rich materials</p>
+                </div>
+                <div class="style-item">
+                    <h4>✨ Modern Contemporary</h4>
+                    <p>Clean lines and minimalist aesthetics</p>
+                </div>
+                <div class="style-item">
+                    <h4>🌿 Scandinavian</h4>
+                    <p>Light, airy, and functional design</p>
+                </div>
+                <div class="style-item">
+                    <h4>🏭 Industrial Chic</h4>
+                    <p>Raw materials and urban aesthetics</p>
+                </div>
+                <div class="style-item">
+                    <h4>🌺 Bohemian</h4>
+                    <p>Eclectic and artistic expressions</p>
+                </div>
+                <div class="style-item">
+                    <h4>🏡 Rustic Farmhouse</h4>
+                    <p>Cozy and countryside charm</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio">
+            <h2>What We Provide</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h4>📐 3D Design Plans</h4>
+                    <p>Detailed 3D visualizations of your space</p>
+                </div>
+                <div class="portfolio-item">
+                    <h4>🎨 Color Schemes</h4>
+                    <p>Professional color coordination and palettes</p>
+                </div>
+                <div class="portfolio-item">
+                    <h4>🛋️ Furniture Selection</h4>
+                    <p>Curated furniture and decor recommendations</p>
+                </div>
+                <div class="portfolio-item">
+                    <h4>💡 Lighting Design</h4>
+                    <p>Ambient and functional lighting solutions</p>
+                </div>
+                <div class="portfolio-item">
+                    <h4>🖼️ Art & Accessories</h4>
+                    <p>Artwork and decorative element curation</p>
+                </div>
+                <div class="portfolio-item">
+                    <h4>🔧 Installation Services</h4>
+                    <p>Complete installation and setup services</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Ready to Transform Your Space?</h2>
+            <p>Let our design experts create your perfect interior</p>
+            <button class="contact-btn">📞 Call Now: (555) 123-4567</button>
+            <button class="contact-btn">🎨 Free Design Consultation</button>
+            <button class="contact-btn">📐 Request 3D Design</button>
+        </div>
+    </div>
+</body>
+</html>

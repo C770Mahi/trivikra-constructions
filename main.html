@@ -881,85 +881,74 @@
                         <p>Fill out this quick form and we'll contact you within 24 hours!</p>
                     </div>
                     
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/mahesh.cin123@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="🏗️ New Construction Inquiry - Trivikra Constructions">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://c770mahi.github.io/trivikra-constructions/?success=true">
+                        <input type="hidden" name="_autoresponse" value="Thank you for your interest in Trivikra Constructions! We have received your inquiry and will contact you within 24 hours. Visit our website: https://c770mahi.github.io/trivikra-constructions/">
+                        
+                        <!-- Additional fields for better email content -->
+                        <input type="hidden" name="website_link" value="https://c770mahi.github.io/trivikra-constructions/">
+                        <input type="hidden" name="company_name" value="Trivikra Constructions">
+                        <input type="hidden" name="inquiry_date" id="inquiry_date">
+                        <input type="hidden" name="message_to_owner" value="📧 NEW LEAD ALERT! A potential customer has submitted an inquiry through your website. Please contact them within 24 hours for best conversion rates.">
+                        
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="name">
-                                    <i class="fas fa-user"></i>
-                                    Full Name *
-                                </label>
-                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="mobile">
-                                    <i class="fas fa-phone"></i>
-                                    Mobile Number *
-                                </label>
-                                <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number">
+                                <label for="mobile">Mobile Number *</label>
+                                <input type="tel" id="mobile" name="mobile" required maxlength="10">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="pincode">
-                                    <i class="fas fa-map-pin"></i>
-                                    Pincode *
-                                </label>
-                                <input type="text" id="pincode" name="pincode" required placeholder="Enter your pincode" maxlength="6">
-                                <div class="pincode-status" id="pincodeStatus"></div>
+                                <label for="pincode">Pincode *</label>
+                                <input type="text" id="pincode" name="pincode" required maxlength="6">
+                                <div id="pincodeStatus" class="pincode-status"></div>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="place">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Location *
-                                </label>
-                                <input type="text" id="place" name="place" required placeholder="Location will auto-fill" readonly>
+                                <label for="place">Location *</label>
+                                <input type="text" id="place" name="place" required readonly>
                             </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="area">Area/Locality</label>
+                            <input type="text" id="area" name="area" placeholder="e.g., Near City Mall, Main Road">
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="timeline">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    Project Timeline *
-                                </label>
+                                <label for="timeline">Project Timeline *</label>
                                 <select id="timeline" name="timeline" required>
-                                    <option value="">Select your timeline</option>
-                                    <option value="immediately">Planning Immediately</option>
-                                    <option value="within_month">Within One Month</option>
-                                    <option value="thinking">Just Thinking/Exploring</option>
-                                    <option value="looking_contractor">Looking for Good Contractor</option>
+                                    <option value="">Select Timeline</option>
+                                    <option value="immediately">Immediately</option>
+                                    <option value="within-1-month">Within 1 Month</option>
+                                    <option value="thinking">Just Thinking</option>
+                                    <option value="looking-contractor">Looking for Good Contractor</option>
                                 </select>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="area">
-                                    <i class="fas fa-building"></i>
-                                    Area/Locality
-                                </label>
-                                <input type="text" id="area" name="area" placeholder="Specific area (optional)">
+                                <label for="service">Service Interest *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select Service</option>
+                                    <option value="material-contract">Material Contract (End-to-End House)</option>
+                                    <option value="labour-contract">Labour Contract</option>
+                                    <option value="interior-design">Interior Design</option>
+                                    <option value="consultation">Free Consultation</option>
+                                </select>
                             </div>
-                        </div>
-                        
-                        <div class="form-group full-width">
-                            <label for="service">
-                                <i class="fas fa-tools"></i>
-                                Service Interest (Optional)
-                            </label>
-                            <select id="service" name="service">
-                                <option value="">Select service of interest</option>
-                                <option value="material_contract">Material Contract - End to End House</option>
-                                <option value="labour_contract">Labour Contract</option>
-                                <option value="interior_design">Interior Design</option>
-                                <option value="multiple">Multiple Services</option>
-                            </select>
                         </div>
                         
                         <button type="submit" class="submit-btn">
                             <i class="fas fa-paper-plane"></i>
-                            Get Free Consultation Now
+                            Get Free Consultation
                         </button>
                     </form>
                     
@@ -1023,8 +1012,8 @@
             <section class="qr-section">
                 <div class="qr-container">
                     <div class="qr-content">
-                        <h2>📱 Get Our Contact Details</h2>
-                        <p>Scan this QR code to get Trivikra Constructions contact information and services</p>
+                        <h2>📱 Visit Our Website</h2>
+                        <p>Scan this QR code to open Trivikra Constructions website directly</p>
                         <div class="qr-code-wrapper">
                             <canvas id="qrcode"></canvas>
                         </div>
@@ -1106,21 +1095,23 @@
             });
         });
 
-        // Form submission handling
+        // Set current date when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const dateString = now.toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('inquiry_date').value = dateString;
+        });
+
+        // Form submission handling - Let FormSubmit handle the email sending
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                mobile: formData.get('mobile'),
-                pincode: formData.get('pincode'),
-                place: formData.get('place'),
-                area: formData.get('area') || 'Not specified',
-                timeline: formData.get('timeline'),
-                service: formData.get('service') || 'Not specified'
-            };
+            // Don't prevent default - let FormSubmit handle it
             
             // Show loading state
             const submitBtn = document.querySelector('.submit-btn');
@@ -1128,26 +1119,8 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Send email with form data
-            sendEmail(data).then(() => {
-                // Show success message
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Form Submitted Successfully!';
-                submitBtn.style.background = 'linear-gradient(45deg, #10b981, #059669)';
-                
-                // Reset form after 2 seconds
-                setTimeout(() => {
-                    this.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
-                    submitBtn.disabled = false;
-                    alert('Thank you! We will contact you within 24 hours with a free consultation.');
-                }, 2000);
-            }).catch(() => {
-                // Show error and reset
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                alert('Thank you for your interest! Your details have been recorded.');
-            });
+            // FormSubmit will handle the actual submission
+            // The form will redirect to the _next URL after successful submission
         });
 
         // Initialize EmailJS (you need to get these from emailjs.com)
@@ -1381,29 +1354,8 @@ Date: ${new Date().toLocaleString()}`;
             const canvas = document.getElementById('qrcode');
             const wrapper = document.querySelector('.qr-code-wrapper');
             
-            // REPLACE THIS URL WITH YOUR ACTUAL HOSTED WEBSITE URL
-            // After hosting on Netlify/GitHub/Vercel, replace the URL below
-            let websiteUrl = 'YOUR_WEBSITE_URL_HERE';
-            
-            // Temporary contact card (remove this when you have your URL)
-            if (websiteUrl === 'YOUR_WEBSITE_URL_HERE') {
-                websiteUrl = `📞 TRIVIKRA CONSTRUCTIONS 📞
-
-🏗️ Professional Construction Services
-📱 Phone: +91-555-123-4567
-📧 Email: mahesh.cin123@gmail.com
-📍 Location: India
-
-🔨 Services:
-• Material Contract (End-to-End House)
-• Labour Contract
-• Interior Design
-
-💬 WhatsApp: +91-555-123-4567
-🌐 Contact us for FREE consultation!
-
-Save this contact for all your construction needs!`;
-            }
+            // Your live GitHub Pages website URL - this will open directly when scanned
+            let websiteUrl = 'https://c770mahi.github.io/trivikra-constructions/';
             
             // Check if QRCode library is loaded
             if (typeof QRCode === 'undefined') {
@@ -1429,10 +1381,10 @@ Save this contact for all your construction needs!`;
                     console.log('QR Code generated successfully for:', websiteUrl);
                     qrCanvas = canvas;
                     
-                    // Show what the QR code contains
+                    // Show the website URL being used
                     const urlDisplay = document.getElementById('qr-url-display');
                     if (urlDisplay) {
-                        urlDisplay.textContent = 'Business Contact Information & Services';
+                        urlDisplay.textContent = websiteUrl;
                     }
                 }
             });

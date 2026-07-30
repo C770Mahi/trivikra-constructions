@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labour Contract - Trivikra Constructions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #f97316;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #D4AF37, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .back-btn {
+            background: #f97316;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .service-item {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+        .service-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .workforce {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .workforce h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .worker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .worker-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #f97316;
+            transition: all 0.3s ease;
+        }
+        .worker-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(249,115,22,0.3);
+        }
+        .worker-item h4 {
+            color: #f97316;
+            margin-bottom: 10px;
+        }
+        .benefits {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .benefits h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .benefit-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .contact-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .contact-btn {
+            background: #D4AF37;
+            color: #2c3e50;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .contact-btn:hover {
+            background: #B8860B;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="window.location.href='main.html'">← Back to Main</button>
+        
+        <div class="header">
+            <h1>👷 Labour Contract Services</h1>
+            <p>Professional workforce and construction labor services for your projects</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-item">
+                <h3>👨‍🔧 Skilled Workers</h3>
+                <p>Experienced masons, carpenters, electricians, and plumbers for quality construction</p>
+            </div>
+            <div class="service-item">
+                <h3>⏰ Flexible Contracts</h3>
+                <p>Daily, weekly, or project-based labor contracts to suit your timeline</p>
+            </div>
+            <div class="service-item">
+                <h3>🛡️ Insured Workforce</h3>
+                <p>All workers are insured and follow strict safety protocols on site</p>
+            </div>
+        </div>
+
+        <div class="workforce">
+            <h2>Our Skilled Workforce</h2>
+            <div class="worker-grid">
+                <div class="worker-item">
+                    <h4>🧱 Masons</h4>
+                    <p>Expert bricklayers and stone workers</p>
+                </div>
+                <div class="worker-item">
+                    <h4>🔨 Carpenters</h4>
+                    <p>Skilled woodworkers and furniture makers</p>
+                </div>
+                <div class="worker-item">
+                    <h4>⚡ Electricians</h4>
+                    <p>Licensed electrical installation experts</p>
+                </div>
+                <div class="worker-item">
+                    <h4>🚿 Plumbers</h4>
+                    <p>Professional plumbing and sanitation specialists</p>
+                </div>
+                <div class="worker-item">
+                    <h4>🎨 Painters</h4>
+                    <p>Interior and exterior painting professionals</p>
+                </div>
+                <div class="worker-item">
+                    <h4>🏗️ Supervisors</h4>
+                    <p>Experienced site supervisors and foremen</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits">
+            <h2>Why Choose Our Labour Contract?</h2>
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <h4>✅ Quality Assurance</h4>
+                    <p>All workers are vetted and trained for quality workmanship</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>📋 Project Management</h4>
+                    <p>Dedicated supervisors ensure work progress and quality</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>🛡️ Safety First</h4>
+                    <p>Strict safety protocols and insurance coverage for all workers</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>⏱️ Timely Delivery</h4>
+                    <p>Committed to meeting project deadlines and milestones</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>💰 Competitive Rates</h4>
+                    <p>Fair and transparent pricing for all labor services</p>
+                </div>
+                <div class="benefit-item">
+                    <h4>🔧 Tool & Equipment</h4>
+                    <p>Workers come with necessary tools and safety equipment</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Need Skilled Workers for Your Project?</h2>
+            <p>Get quotes for daily, weekly, or project-based labor contracts</p>
+            <button class="contact-btn">📞 Call Now: (555) 123-4567</button>
+            <button class="contact-btn">📧 Request Worker Quote</button>
+            <button class="contact-btn">👷 Book Site Assessment</button>
+        </div>
+    </div>
+</body>
+</html>
