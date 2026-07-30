@@ -882,7 +882,8 @@
                     </div>
                     
                     <form class="contact-form" id="contactForm">
-                        <!-- EmailJS will handle form submission -->
+                        <!-- Backup FormSubmit action (uncomment if EmailJS fails) -->
+                        <!-- <form action="https://formsubmit.co/mahesh.cin123@gmail.com" method="POST"> -->
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1086,7 +1087,7 @@
 
         // Initialize EmailJS
         (function() {
-            emailjs.init("bNsoH79ZT075-Rml8"); // Your EmailJS public key
+            emailjs.init("wcc5Uk33k9f-hvuN2"); // Your EmailJS public key
         })();
 
         // EmailJS form submission handling
@@ -1122,7 +1123,7 @@
                 email_subject: `🏗️ New Construction Inquiry-${inquiryCount} - ${formData.get('name')} - Aaa developers`
             };
             
-            // Send email using EmailJS
+            // Send email using EmailJS with error handling
             emailjs.send('service_jstsx0d', 'template_tca6nna', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
@@ -1142,9 +1143,15 @@
                     
                 }, function(error) {
                     console.log('FAILED...', error);
+                    console.log('Error details:', error.text, error.status);
                     
-                    // Show error message
-                    submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed to Send';
+                    // Show detailed error message
+                    let errorMsg = 'Failed to Send';
+                    if (error.text) {
+                        errorMsg = error.text.includes('Invalid') ? 'Invalid Configuration' : 'Failed to Send';
+                    }
+                    
+                    submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${errorMsg}`;
                     submitBtn.style.background = 'linear-gradient(45deg, #ef4444, #dc2626)';
                     
                     // Reset after 3 seconds
@@ -1152,7 +1159,9 @@
                         submitBtn.innerHTML = originalText;
                         submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
                         submitBtn.disabled = false;
-                        alert('❌ Sorry, there was an error sending your message. Please try again or contact us directly.');
+                        
+                        // Show detailed error info
+                        alert(`❌ Email Error: ${error.text || 'Unknown error'}\n\nPossible fixes:\n1. Check EmailJS service settings\n2. Verify template configuration\n3. Add domain to allowed origins\n\nContact: mahesh.cin123@gmail.com`);
                     }, 3000);
                 });
         });
