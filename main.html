@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aah Developers - Professional Construction Services</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <!-- Fresh EmailJS CDN -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
@@ -91,6 +90,21 @@
         }
 
         .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle:hover {
             color: #3b82f6;
         }
 
@@ -305,7 +319,7 @@
         /* Contact Form Section - Unique Center Box */
         .contact-form-section {
             margin: 4rem 0;
-            display: flex;
+            display: none; /* Hidden - using floating modal instead */
             justify-content: center;
             align-items: center;
         }
@@ -1013,8 +1027,42 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .nav-links {
                 display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 0;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+                color: #2c3e50;
+                font-size: 1.1rem;
+            }
+
+            .nav-links a:hover {
+                background: rgba(59,130,246,0.1);
             }
             
             .hero h1 {
@@ -1100,9 +1148,247 @@
         .fade-in {
             animation: fadeInUp 0.8s ease-out;
         }
+
+        /* Floating Contact Button */
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse-float 2s infinite;
+        }
+
+        .floating-contact-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(59,130,246,0.6);
+        }
+
+        .floating-contact-btn i {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .floating-contact-btn span {
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse-float {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(59,130,246,0.6);
+            }
+        }
+
+        /* Contact Form Modal */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .contact-modal.active {
+            display: flex;
+        }
+
+        .contact-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #dc2626;
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .floating-contact-btn {
+                width: 70px;
+                height: 70px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-contact-btn i {
+                font-size: 1.5rem;
+            }
+
+            .floating-contact-btn span {
+                font-size: 0.6rem;
+            }
+
+            .contact-modal-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Floating Contact Button -->
+    <div class="floating-contact-btn" onclick="openContactModal()">
+        <i class="fas fa-envelope"></i>
+        <span>Click Me</span>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <button class="close-modal" onclick="closeContactModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="form-header">
+                <i class="fas fa-clipboard-list form-header-icon"></i>
+                <h2>Get Your Free Consultation</h2>
+                <p>Fill out this quick form and we'll contact you within 24 hours!</p>
+            </div>
+            
+            <form class="contact-form" id="contactFormModal">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-name">Full Name *</label>
+                        <input type="text" id="modal-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-email">Email Address *</label>
+                        <input type="email" id="modal-email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-mobile">Mobile Number *</label>
+                        <input type="tel" id="modal-mobile" name="mobile" required maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-pincode">Pincode *</label>
+                        <input type="text" id="modal-pincode" name="pincode" required maxlength="6">
+                        <div id="modalPincodeStatus" class="pincode-status"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-place">Location *</label>
+                        <input type="text" id="modal-place" name="place" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-area">Area/Locality</label>
+                        <input type="text" id="modal-area" name="area" placeholder="e.g., Near City Mall, Main Road">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modal-timeline">Project Timeline *</label>
+                        <select id="modal-timeline" name="timeline" required>
+                            <option value="">Select Timeline</option>
+                            <option value="immediately">Immediately</option>
+                            <option value="within-1-month">Within 1 Month</option>
+                            <option value="thinking">Just Thinking</option>
+                            <option value="looking-contractor">Looking for Good Contractor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-service">Service Interest *</label>
+                        <select id="modal-service" name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="material-contract">Material Contract (End-to-End House)</option>
+                            <option value="labour-contract">Labour Contract</option>
+                            <option value="interior-design">Interior Design</option>
+                            <option value="consultation">Free Consultation</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Get Free Consultation
+                </button>
+            </form>
+            
+            <div class="form-footer">
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-check"></i>
+                        <span>100% Free</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24hr Response</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>No Spam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="nav-container">
@@ -1179,13 +1465,16 @@
                     <div class="company-name">Aah Developers</div>
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">About Us</a></li>
+                <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
                 <li><a href="projects.html">Projects</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-                <li><a href="#quote">Get Quote</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Contact Us</a></li>
+                <li><a href="#quote" onclick="closeMobileMenu()">Get Quote</a></li>
             </ul>
         </nav>
 
@@ -1213,71 +1502,6 @@
                     <div class="stat-item">
                         <span class="stat-number">24/7</span>
                         <span class="stat-label">Support Available</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Quick Navigation Ribbon -->
-            <section class="ribbon-section">
-                <div class="ribbon-container">
-                    <div class="ribbon-item" onclick="window.location.href='#about'">
-                        <div class="ribbon-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="ribbon-content">
-                            <h3>About Us</h3>
-                            <p>Learn about our company</p>
-                        </div>
-                    </div>
-                    
-                    <div class="ribbon-item" onclick="window.location.href='#services'">
-                        <div class="ribbon-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <div class="ribbon-content">
-                            <h3>Our Services</h3>
-                            <p>Construction solutions</p>
-                        </div>
-                    </div>
-                    
-                    <div class="ribbon-item" onclick="window.location.href='projects.html'">
-                        <div class="ribbon-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="ribbon-content">
-                            <h3>Projects</h3>
-                            <p>View our portfolio</p>
-                        </div>
-                    </div>
-                    
-                    <div class="ribbon-item" onclick="window.location.href='#contact'">
-                        <div class="ribbon-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="ribbon-content">
-                            <h3>Contact Us</h3>
-                            <p>Get in touch today</p>
-                        </div>
-                    </div>
-                    
-                    <div class="ribbon-item" onclick="window.location.href='#quote'">
-                        <div class="ribbon-icon">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="ribbon-content">
-                            <h3>Get Quote</h3>
-                            <p>Free consultation</p>
-                        </div>
-                    </div>
-                    
-                    <div class="ribbon-item" onclick="window.location.href='#testimonials'">
-                        <div class="ribbon-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="ribbon-content">
-                            <h3>Reviews</h3>
-                            <p>Client testimonials</p>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -1441,37 +1665,6 @@
                 </div>
             </section>
 
-            <!-- QR Code Section -->
-            <section class="qr-section">
-                <div class="qr-container">
-                    <div class="qr-content">
-                        <h2>📱 Visit Our Website</h2>
-                        <p>Scan this QR code to open Aah Developers website directly</p>
-                        <div class="qr-code-wrapper">
-                            <canvas id="qrcode"></canvas>
-                        </div>
-                        <div class="qr-url-info">
-                            <p><strong>QR Code URL:</strong> <span id="qr-url-display">Loading...</span></p>
-                        </div>
-                        <div class="qr-actions">
-                            <button class="qr-btn" onclick="downloadQR()">
-                                <i class="fas fa-download"></i>
-                                Download QR Code
-                            </button>
-                            <button class="qr-btn" onclick="shareQR()">
-                                <i class="fas fa-share-alt"></i>
-                                Share QR Code
-                            </button>
-                            <button class="qr-btn" onclick="window.open('https://netlify.com/drop')">
-                                <i class="fas fa-rocket"></i>
-                                Quick Host (Netlify)
-                            </button>
-                        </div>
-                        <p class="qr-note">Perfect for business cards, flyers, and marketing materials!</p>
-                    </div>
-                </div>
-            </section>
-
             <!-- Contact Section -->
             <section class="contact-section" id="contact">
                 <h2>Or Contact Us Directly</h2>
@@ -1502,6 +1695,179 @@
                 behavior: 'smooth'
             });
         }
+
+        // Open and Close Contact Modal
+        function openContactModal() {
+            document.getElementById('contactModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeContactModal();
+            }
+        });
+
+        // Modal form submission
+        document.getElementById('contactFormModal').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Email...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            let inquiryCount = localStorage.getItem('Aah_inquiry_count') || 0;
+            inquiryCount = parseInt(inquiryCount) + 1;
+            localStorage.setItem('Aah_inquiry_count', inquiryCount);
+            
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                from_mobile: formData.get('mobile'),
+                from_pincode: formData.get('pincode'),
+                from_place: formData.get('place'),
+                from_area: formData.get('area') || 'Not specified',
+                from_timeline: formData.get('timeline'),
+                from_service: formData.get('service'),
+                website_link: 'https://c770mahi.github.io/trivikra-constructions/',
+                message: 'New construction inquiry from website. Please contact within 24 hours.',
+                subject: `🏗️ New Construction Inquiry-${inquiryCount} - ${formData.get('name')} - Aah Developers`
+            };
+            
+            emailjs.send('service_r9qrych', 'template_zpkvlhv', templateParams)
+                .then(function(response) {
+                    console.log('✅ Email sent successfully!', response.status, response.text);
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Email Sent Successfully!';
+                    submitBtn.style.background = 'linear-gradient(45deg, #10b981, #059669)';
+                    
+                    setTimeout(() => {
+                        document.getElementById('contactFormModal').reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
+                        submitBtn.disabled = false;
+                        alert('✅ Thank you! Your inquiry has been sent successfully. We will contact you within 24 hours.');
+                        closeContactModal();
+                    }, 3000);
+                    
+                }, function(error) {
+                    console.log('❌ EmailJS failed:', error);
+                    
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
+                    submitBtn.disabled = false;
+                    
+                    alert('❌ Failed to send email. Please try again or contact us directly.');
+                });
+        });
+
+        // Modal pincode handling
+        document.getElementById('modal-pincode').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 6) {
+                value = value.slice(0, 6);
+            }
+            e.target.value = value;
+
+            if (value.length === 6) {
+                detectModalLocationFromPincode(value);
+            } else {
+                document.getElementById('modal-place').value = '';
+                document.getElementById('modalPincodeStatus').textContent = '';
+            }
+        });
+
+        function detectModalLocationFromPincode(pincode) {
+            const statusDiv = document.getElementById('modalPincodeStatus');
+            const placeInput = document.getElementById('modal-place');
+            
+            statusDiv.textContent = '🔍 Detecting location...';
+            statusDiv.className = 'pincode-status loading';
+            placeInput.value = '';
+
+            fetchLocationFromAPI(pincode)
+                .then(location => {
+                    if (location) {
+                        placeInput.value = location;
+                        statusDiv.textContent = '✅ Location detected';
+                        statusDiv.className = 'pincode-status success';
+                    } else {
+                        throw new Error('Location not found');
+                    }
+                })
+                .catch(() => {
+                    statusDiv.textContent = '❌ Please enter location manually';
+                    statusDiv.className = 'pincode-status error';
+                });
+        }
+
+        // Modal mobile number formatting
+        document.getElementById('modal-mobile').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) {
+                value = value.slice(0, 10);
+            }
+            e.target.value = value;
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.querySelector('.mobile-menu-toggle i');
+            
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIcon = document.querySelector('.mobile-menu-toggle i');
+            
+            navLinks.classList.remove('active');
+            
+            // Reset icon to hamburger
+            if (menuIcon) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const menuIcon = document.querySelector('.mobile-menu-toggle i');
+            
+            if (navLinks && menuToggle) {
+                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                    
+                    // Reset icon
+                    if (menuIcon) {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                }
+            }
+        });
 
         // Project Media Gallery Functions
         function changeMedia(button, direction) {
@@ -1872,108 +2238,6 @@ Date: ${new Date().toLocaleString()}`;
             } catch (error) {
                 console.log('API Error:', error);
                 return null;
-            }
-        }
-
-        // QR Code functionality
-        let qrCanvas = null;
-
-        // Generate QR code when page loads
-        window.addEventListener('load', function() {
-            generateQRCode();
-        });
-
-        function generateQRCode() {
-            const canvas = document.getElementById('qrcode');
-            const wrapper = document.querySelector('.qr-code-wrapper');
-            
-            // Your live GitHub Pages website URL - this will open directly when scanned
-            let websiteUrl = 'https://c770mahi.github.io/trivikra-constructions/';
-            
-            // Check if QRCode library is loaded
-            if (typeof QRCode === 'undefined') {
-                console.log('QRCode library not loaded, using fallback...');
-                showFallbackQR(wrapper, websiteUrl);
-                return;
-            }
-            
-            QRCode.toCanvas(canvas, websiteUrl, {
-                width: 200,
-                height: 200,
-                color: {
-                    dark: '#2c3e50',
-                    light: '#ffffff'
-                },
-                margin: 2,
-                errorCorrectionLevel: 'M'
-            }, function (error) {
-                if (error) {
-                    console.error('QR Code generation failed:', error);
-                    showFallbackQR(wrapper, websiteUrl);
-                } else {
-                    console.log('QR Code generated successfully for:', websiteUrl);
-                    qrCanvas = canvas;
-                    
-                    // Show the website URL being used
-                    const urlDisplay = document.getElementById('qr-url-display');
-                    if (urlDisplay) {
-                        urlDisplay.textContent = websiteUrl;
-                    }
-                }
-            });
-        }
-
-        // Fallback QR code using online service
-        function showFallbackQR(wrapper, data) {
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data)}`;
-            
-            wrapper.innerHTML = `
-                <img src="${qrUrl}" 
-                     alt="QR Code for Aah Constructions Contact" 
-                     style="width: 200px; height: 200px; border-radius: 10px;"
-                     onload="console.log('Fallback QR code loaded successfully')"
-                     onerror="console.error('Fallback QR code failed to load')">
-            `;
-        }
-
-        // Download QR code as image
-        function downloadQR() {
-            if (qrCanvas) {
-                // Download from canvas
-                const link = document.createElement('a');
-                link.download = 'Aah-constructions-qr.png';
-                link.href = qrCanvas.toDataURL();
-                link.click();
-            } else {
-                // Download from fallback image
-                const img = document.querySelector('.qr-code-wrapper img');
-                if (img) {
-                    const link = document.createElement('a');
-                    link.download = 'Aah-constructions-qr.png';
-                    link.href = img.src;
-                    link.click();
-                } else {
-                    alert('QR code not ready yet. Please wait a moment and try again.');
-                }
-            }
-        }
-
-        // Share QR code
-        function shareQR() {
-            if (navigator.share && qrCanvas) {
-                qrCanvas.toBlob(function(blob) {
-                    const file = new File([blob], 'Aah-qr.png', { type: 'image/png' });
-                    navigator.share({
-                        title: 'Aah Constructions Website',
-                        text: 'Scan this QR code to visit Aah Constructions website',
-                        files: [file]
-                    }).catch(console.error);
-                });
-            } else {
-                // Fallback: copy URL to clipboard
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('Website URL copied to clipboard! Share it with others.');
-                });
             }
         }
 
