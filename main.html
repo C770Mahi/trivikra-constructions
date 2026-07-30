@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aah Developers - Professional Construction Services</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <!-- Fresh EmailJS CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -881,11 +882,8 @@
                         <p>Fill out this quick form and we'll contact you within 24 hours!</p>
                     </div>
                     
-                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/aaah.builders@gmail.com" method="POST">
-                        <!-- Using FormSubmit as reliable backup while EmailJS is being fixed -->
-                        <input type="hidden" name="_subject" value="🏗️ New Construction Inquiry - Aah Developers">
-                        <input type="hidden" name="_next" value="https://c770mahi.github.io/trivikra-constructions/">
-                        <input type="hidden" name="_captcha" value="false">
+                    <form class="contact-form" id="contactForm">
+                        <!-- Switched back to EmailJS with a new service setup -->
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1093,42 +1091,23 @@
             });
         });
 
-        // Initialize EmailJS
+        // ========================================
+        // FRESH EMAILJS SETUP - READY FOR NEW CREDENTIALS
+        // ========================================
+        
+        // Initialize EmailJS with fresh public key
         (function() {
-            emailjs.init("wcc5Uk33k9f-hvuN2"); // Your EmailJS public key
+            emailjs.init("bNsoH79ZT075-Rml8");
         })();
 
-        // Ensure form is enabled when page loads
-        window.addEventListener('load', function() {
-            const submitBtn = document.querySelector('.submit-btn');
-            const formInputs = document.querySelectorAll('#contactForm input, #contactForm select');
-            
-            // Enable submit button
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.style.pointerEvents = 'auto';
-                submitBtn.style.opacity = '1';
-            }
-            
-            // Enable all form inputs
-            formInputs.forEach(input => {
-                input.disabled = false;
-                input.style.pointerEvents = 'auto';
-                input.style.opacity = '1';
-            });
-            
-            console.log('Form enabled and ready for input');
-        });
-
-        // EmailJS form submission handling (TEMPORARILY DISABLED - Using FormSubmit backup)
-        /* 
+        // Fresh form submission handler
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Show loading state
             const submitBtn = document.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending Email...';
             submitBtn.disabled = true;
             
             // Get form data
@@ -1139,6 +1118,7 @@
             inquiryCount = parseInt(inquiryCount) + 1;
             localStorage.setItem('Aah_inquiry_count', inquiryCount);
             
+            // Prepare email parameters
             const templateParams = {
                 from_name: formData.get('name'),
                 from_email: formData.get('email'),
@@ -1149,17 +1129,14 @@
                 from_timeline: formData.get('timeline'),
                 from_service: formData.get('service'),
                 website_link: 'https://c770mahi.github.io/trivikra-constructions/',
-                to_email: 'aaah.builders@gmail.com',
                 message: 'New construction inquiry from website. Please contact within 24 hours.',
-                inquiry_number: inquiryCount,
-                email_subject: `🏗️ New Construction Inquiry-${inquiryCount} - ${formData.get('name')} - Aah Developers`
+                subject: `🏗️ New Construction Inquiry-${inquiryCount} - ${formData.get('name')} - Aah Developers`
             };
             
-            // Send email using EmailJS with error handling
-            // NOTE: Replace 'service_jstsx0d' with your actual service ID from EmailJS dashboard
-            emailjs.send('service_jstsx0d', 'template_tca6nna', templateParams)
+            // Send email using fresh EmailJS setup
+            emailjs.send('service_r9qrych', 'template_zpkvlhv', templateParams)
                 .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
+                    console.log('✅ Email sent successfully!', response.status, response.text);
                     
                     // Show success message
                     submitBtn.innerHTML = '<i class="fas fa-check"></i> Email Sent Successfully!';
@@ -1175,30 +1152,31 @@
                     }, 3000);
                     
                 }, function(error) {
-                    console.log('FAILED...', error);
-                    console.log('Error details:', error.text, error.status);
+                    console.log('❌ EmailJS failed:', error);
                     
-                    // Show detailed error message
-                    let errorMsg = 'Failed to Send';
-                    if (error.text) {
-                        errorMsg = error.text.includes('Invalid') ? 'Invalid Configuration' : 'Failed to Send';
-                    }
+                    // Fallback to manual email
+                    submitBtn.innerHTML = '<i class="fas fa-envelope"></i> Show Email Details';
+                    submitBtn.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
                     
-                    submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${errorMsg}`;
-                    submitBtn.style.background = 'linear-gradient(45deg, #ef4444, #dc2626)';
-                    
-                    // Reset after 3 seconds
                     setTimeout(() => {
                         submitBtn.innerHTML = originalText;
                         submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
                         submitBtn.disabled = false;
                         
-                        // Show detailed error info
-                        alert(`❌ Email Error: ${error.text || 'Unknown error'}\n\nPossible fixes:\n1. Check EmailJS service settings\n2. Verify template configuration\n3. Add domain to allowed origins\n\nContact: aaah.builders@gmail.com`);
-                    }, 3000);
+                        // Show manual email instructions
+                        showEmailInstructions({
+                            name: formData.get('name'),
+                            email: formData.get('email'),
+                            mobile: formData.get('mobile'),
+                            pincode: formData.get('pincode'),
+                            place: formData.get('place'),
+                            area: formData.get('area'),
+                            timeline: formData.get('timeline'),
+                            service: formData.get('service')
+                        });
+                    }, 2000);
                 });
         });
-        */
 
 
         // Email sending function
