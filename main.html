@@ -1152,6 +1152,7 @@
             };
             
             // Send email using EmailJS with error handling
+            // NOTE: Replace 'service_jstsx0d' with your actual service ID from EmailJS dashboard
             emailjs.send('service_jstsx0d', 'template_tca6nna', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
