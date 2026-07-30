@@ -1101,6 +1101,12 @@
             
             // Get form data
             const formData = new FormData(this);
+            
+            // Get and increment inquiry counter
+            let inquiryCount = localStorage.getItem('trivikra_inquiry_count') || 0;
+            inquiryCount = parseInt(inquiryCount) + 1;
+            localStorage.setItem('trivikra_inquiry_count', inquiryCount);
+            
             const templateParams = {
                 from_name: formData.get('name'),
                 from_mobile: formData.get('mobile'),
@@ -1111,7 +1117,9 @@
                 from_service: formData.get('service'),
                 website_link: 'https://c770mahi.github.io/trivikra-constructions/',
                 to_email: 'mahesh.cin123@gmail.com',
-                message: 'New construction inquiry from website. Please contact within 24 hours.'
+                message: 'New construction inquiry from website. Please contact within 24 hours.',
+                inquiry_number: inquiryCount,
+                subject: `🏗️ New Construction Inquiry-${inquiryCount} - ${formData.get('name')} - Trivikra Constructions`
             };
             
             // Send email using EmailJS
