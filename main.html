@@ -881,8 +881,11 @@
                         <p>Fill out this quick form and we'll contact you within 24 hours!</p>
                     </div>
                     
-                    <form class="contact-form" id="contactForm">
-                        <!-- EmailJS is now working with proper service configuration -->
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/aaah.builders@gmail.com" method="POST">
+                        <!-- Using FormSubmit as reliable backup while EmailJS is being fixed -->
+                        <input type="hidden" name="_subject" value="🏗️ New Construction Inquiry - Aah Developers">
+                        <input type="hidden" name="_next" value="https://c770mahi.github.io/trivikra-constructions/">
+                        <input type="hidden" name="_captcha" value="false">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1117,7 +1120,8 @@
             console.log('Form enabled and ready for input');
         });
 
-        // EmailJS form submission handling (REACTIVATED - Service now configured)
+        // EmailJS form submission handling (TEMPORARILY DISABLED - Using FormSubmit backup)
+        /* 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1194,6 +1198,7 @@
                     }, 3000);
                 });
         });
+        */
 
 
         // Email sending function
