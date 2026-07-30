@@ -903,7 +903,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="place">Location *</label>
-                                <input type="text" id="place" name="place" required readonly>
+                                <input type="text" id="place" name="place" required>
                             </div>
                         </div>
                         
@@ -1089,6 +1089,28 @@
             emailjs.init("wcc5Uk33k9f-hvuN2"); // Your EmailJS public key
         })();
 
+        // Ensure form is enabled when page loads
+        window.addEventListener('load', function() {
+            const submitBtn = document.querySelector('.submit-btn');
+            const formInputs = document.querySelectorAll('#contactForm input, #contactForm select');
+            
+            // Enable submit button
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.style.pointerEvents = 'auto';
+                submitBtn.style.opacity = '1';
+            }
+            
+            // Enable all form inputs
+            formInputs.forEach(input => {
+                input.disabled = false;
+                input.style.pointerEvents = 'auto';
+                input.style.opacity = '1';
+            });
+            
+            console.log('Form enabled and ready for input');
+        });
+
         // EmailJS form submission handling (REACTIVATED - Service now configured)
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1164,6 +1186,7 @@
                     }, 3000);
                 });
         });
+
 
         // Email sending function
         function sendEmail(data) {
