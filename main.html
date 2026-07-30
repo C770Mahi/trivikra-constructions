@@ -890,26 +890,32 @@
                                 <input type="text" id="name" name="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="mobile">Mobile Number *</label>
-                                <input type="tel" id="mobile" name="mobile" required maxlength="10">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
+                                <label for="mobile">Mobile Number *</label>
+                                <input type="tel" id="mobile" name="mobile" required maxlength="10">
+                            </div>
+                            <div class="form-group">
                                 <label for="pincode">Pincode *</label>
                                 <input type="text" id="pincode" name="pincode" required maxlength="6">
                                 <div id="pincodeStatus" class="pincode-status"></div>
                             </div>
+                        </div>
+                        
+                        <div class="form-row">
                             <div class="form-group">
                                 <label for="place">Location *</label>
                                 <input type="text" id="place" name="place" required>
                             </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="area">Area/Locality</label>
-                            <input type="text" id="area" name="area" placeholder="e.g., Near City Mall, Main Road">
+                            <div class="form-group">
+                                <label for="area">Area/Locality</label>
+                                <input type="text" id="area" name="area" placeholder="e.g., Near City Mall, Main Road">
+                            </div>
                         </div>
                         
                         <div class="form-row">
@@ -1131,6 +1137,7 @@
             
             const templateParams = {
                 from_name: formData.get('name'),
+                from_email: formData.get('email'),
                 from_mobile: formData.get('mobile'),
                 from_pincode: formData.get('pincode'),
                 from_place: formData.get('place'),
@@ -1266,6 +1273,7 @@
                     <strong>Subject:</strong> New Construction Inquiry - Aah Constructions<br><br>
                     <strong>Customer Details:</strong><br>
                     Name: ${data.name}<br>
+                    Email: ${data.email}<br>
                     Mobile: ${data.mobile}<br>
                     Pincode: ${data.pincode}<br>
                     Location: ${data.place}<br>
@@ -1295,6 +1303,7 @@ Subject: New Construction Inquiry - Aah Constructions
 
 Customer Details:
 Name: ${data.name}
+Email: ${data.email}
 Mobile: ${data.mobile}
 Pincode: ${data.pincode}
 Location: ${data.place}
