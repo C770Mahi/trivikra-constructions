@@ -881,17 +881,8 @@
                         <p>Fill out this quick form and we'll contact you within 24 hours!</p>
                     </div>
                     
-                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/mahesh.cin123@gmail.com" method="POST">
-                        <!-- FormSubmit Configuration - Simple & Reliable -->
-                        <input type="hidden" name="_subject" value="New Construction Inquiry - Trivikra Constructions">
-                        <input type="hidden" name="_next" value="https://c770mahi.github.io/trivikra-constructions/?submitted=true">
-                        <input type="hidden" name="_template" value="box">
-                        <input type="hidden" name="_captcha" value="false">
-                        
-                        <!-- Website link for customer -->
-                        <input type="hidden" name="website" value="Visit our website: https://c770mahi.github.io/trivikra-constructions/">
-                        <input type="hidden" name="company" value="Trivikra Constructions">
-                        <input type="hidden" name="message" value="Please contact this customer within 24 hours for best conversion rates.">
+                    <form class="contact-form" id="contactForm">
+                        <!-- EmailJS will handle form submission -->
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1093,25 +1084,70 @@
             });
         });
 
-        // Simple form submission handling
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("wcc5Uk33k9f-hvuN2"); // Your EmailJS public key
+        })();
+
+        // EmailJS form submission handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             // Show loading state
             const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
             
-            // Let FormSubmit handle the rest - no API needed!
+            // Get form data
+            const formData = new FormData(this);
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_mobile: formData.get('mobile'),
+                from_pincode: formData.get('pincode'),
+                from_place: formData.get('place'),
+                from_area: formData.get('area') || 'Not specified',
+                from_timeline: formData.get('timeline'),
+                from_service: formData.get('service'),
+                website_link: 'https://c770mahi.github.io/trivikra-constructions/',
+                to_email: 'mahesh.cin123@gmail.com',
+                message: 'New construction inquiry from website. Please contact within 24 hours.'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_v66cfra', 'template_tca6nna', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Email Sent Successfully!';
+                    submitBtn.style.background = 'linear-gradient(45deg, #10b981, #059669)';
+                    
+                    // Reset form after 3 seconds
+                    setTimeout(() => {
+                        document.getElementById('contactForm').reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
+                        submitBtn.disabled = false;
+                        alert('✅ Thank you! Your inquiry has been sent successfully. We will contact you within 24 hours.');
+                    }, 3000);
+                    
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Show error message
+                    submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed to Send';
+                    submitBtn.style.background = 'linear-gradient(45deg, #ef4444, #dc2626)';
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = 'linear-gradient(45deg, #3b82f6, #1e40af)';
+                        submitBtn.disabled = false;
+                        alert('❌ Sorry, there was an error sending your message. Please try again or contact us directly.');
+                    }, 3000);
+                });
         });
-
-        // Show success message if redirected back with submitted parameter
-        if (window.location.search.includes('submitted=true')) {
-            alert('✅ Thank you! Your inquiry has been submitted successfully. We will contact you within 24 hours.');
-        }
-
-        // Initialize EmailJS (you need to get these from emailjs.com)
-        (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-        })();
 
         // Email sending function
         function sendEmail(data) {
