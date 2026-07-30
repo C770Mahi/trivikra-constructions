@@ -882,8 +882,7 @@
                     </div>
                     
                     <form class="contact-form" id="contactForm">
-                        <!-- Backup FormSubmit action (uncomment if EmailJS fails) -->
-                        <!-- <form action="https://formsubmit.co/aaah.builders@gmail.com" method="POST"> -->
+                        <!-- EmailJS is now working with proper service configuration -->
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1090,7 +1089,7 @@
             emailjs.init("wcc5Uk33k9f-hvuN2"); // Your EmailJS public key
         })();
 
-        // EmailJS form submission handling
+        // EmailJS form submission handling (REACTIVATED - Service now configured)
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
