@@ -963,7 +963,7 @@
 
             <!-- Features Section -->
             <section class="features-section">
-                <h2 class="section-title" style="color: #2c3e50;">Why Choose Trivikra Constructions?</h2>
+                <h2 class="section-title" style="color: #2c3e50;">Why Choose Aah Constructions?</h2>
                 <div class="features-grid">
                     <div class="feature-item">
                         <i class="fas fa-award feature-icon"></i>
@@ -1104,9 +1104,9 @@
             const formData = new FormData(this);
             
             // Get and increment inquiry counter
-            let inquiryCount = localStorage.getItem('trivikra_inquiry_count') || 0;
+            let inquiryCount = localStorage.getItem('Aah_inquiry_count') || 0;
             inquiryCount = parseInt(inquiryCount) + 1;
-            localStorage.setItem('trivikra_inquiry_count', inquiryCount);
+            localStorage.setItem('Aah_inquiry_count', inquiryCount);
             
             const templateParams = {
                 from_name: formData.get('name'),
@@ -1116,7 +1116,7 @@
                 from_area: formData.get('area') || 'Not specified',
                 from_timeline: formData.get('timeline'),
                 from_service: formData.get('service'),
-                website_link: 'https://c770mahi.github.io/trivikra-constructions/',
+                website_link: 'https://c770mahi.github.io/Aah-constructions/',
                 to_email: 'mahesh.cin123@gmail.com',
                 message: 'New construction inquiry from website. Please contact within 24 hours.',
                 inquiry_number: inquiryCount,
@@ -1197,12 +1197,12 @@
         // Store inquiry data locally and provide instructions
         function storeInquiryLocally(data) {
             // Store in localStorage for backup
-            const inquiries = JSON.parse(localStorage.getItem('trivikra_inquiries') || '[]');
+            const inquiries = JSON.parse(localStorage.getItem('Aah_inquiries') || '[]');
             inquiries.push({
                 ...data,
                 timestamp: new Date().toISOString()
             });
-            localStorage.setItem('trivikra_inquiries', JSON.stringify(inquiries));
+            localStorage.setItem('Aah_inquiries', JSON.stringify(inquiries));
 
             // Show modal with email details
             showEmailInstructions(data);
@@ -1241,7 +1241,7 @@
                 
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; font-family: monospace; font-size: 0.9rem;">
                     <strong>To:</strong> mahesh.cin123@gmail.com<br>
-                    <strong>Subject:</strong> New Construction Inquiry - Trivikra Constructions<br><br>
+                    <strong>Subject:</strong> New Construction Inquiry - Aah Constructions<br><br>
                     <strong>Customer Details:</strong><br>
                     Name: ${data.name}<br>
                     Mobile: ${data.mobile}<br>
@@ -1269,7 +1269,7 @@
             // Add functions to window for button clicks
             window.copyToClipboard = () => {
                 const text = `To: mahesh.cin123@gmail.com
-Subject: New Construction Inquiry - Trivikra Constructions
+Subject: New Construction Inquiry - Aah Constructions
 
 Customer Details:
 Name: ${data.name}
@@ -1393,7 +1393,7 @@ Date: ${new Date().toLocaleString()}`;
             const wrapper = document.querySelector('.qr-code-wrapper');
             
             // Your live GitHub Pages website URL - this will open directly when scanned
-            let websiteUrl = 'https://c770mahi.github.io/trivikra-constructions/';
+            let websiteUrl = 'https://c770mahi.github.io/Aah-constructions/';
             
             // Check if QRCode library is loaded
             if (typeof QRCode === 'undefined') {
@@ -1434,7 +1434,7 @@ Date: ${new Date().toLocaleString()}`;
             
             wrapper.innerHTML = `
                 <img src="${qrUrl}" 
-                     alt="QR Code for Trivikra Constructions Contact" 
+                     alt="QR Code for Aah Constructions Contact" 
                      style="width: 200px; height: 200px; border-radius: 10px;"
                      onload="console.log('Fallback QR code loaded successfully')"
                      onerror="console.error('Fallback QR code failed to load')">
@@ -1446,7 +1446,7 @@ Date: ${new Date().toLocaleString()}`;
             if (qrCanvas) {
                 // Download from canvas
                 const link = document.createElement('a');
-                link.download = 'trivikra-constructions-qr.png';
+                link.download = 'Aah-constructions-qr.png';
                 link.href = qrCanvas.toDataURL();
                 link.click();
             } else {
@@ -1454,7 +1454,7 @@ Date: ${new Date().toLocaleString()}`;
                 const img = document.querySelector('.qr-code-wrapper img');
                 if (img) {
                     const link = document.createElement('a');
-                    link.download = 'trivikra-constructions-qr.png';
+                    link.download = 'Aah-constructions-qr.png';
                     link.href = img.src;
                     link.click();
                 } else {
@@ -1467,10 +1467,10 @@ Date: ${new Date().toLocaleString()}`;
         function shareQR() {
             if (navigator.share && qrCanvas) {
                 qrCanvas.toBlob(function(blob) {
-                    const file = new File([blob], 'trivikra-qr.png', { type: 'image/png' });
+                    const file = new File([blob], 'Aah-qr.png', { type: 'image/png' });
                     navigator.share({
-                        title: 'Trivikra Constructions Website',
-                        text: 'Scan this QR code to visit Trivikra Constructions website',
+                        title: 'Aah Constructions Website',
+                        text: 'Scan this QR code to visit Aah Constructions website',
                         files: [file]
                     }).catch(console.error);
                 });
@@ -1517,10 +1517,10 @@ Date: ${new Date().toLocaleString()}`;
                     <h4 style="color: #3b82f6;">📂 GitHub Pages (Recommended)</h4>
                     <ol style="color: #666; font-size: 0.9rem; margin-left: 1rem;">
                         <li>Create account at <strong>github.com</strong></li>
-                        <li>Create new repository named "trivikra-constructions"</li>
+                        <li>Create new repository named "Aah-constructions"</li>
                         <li>Upload your HTML files (index.html, main.html, etc.)</li>
                         <li>Enable GitHub Pages in repository settings</li>
-                        <li>Your site will be at: <code>https://username.github.io/trivikra-constructions/</code></li>
+                        <li>Your site will be at: <code>https://username.github.io/Aah-constructions/</code></li>
                     </ol>
                 </div>
 
